@@ -1,25 +1,76 @@
-var wdi_24_names = ["Adrianna", "Andrew", "Christian", "Daniel", "David", "Desi", "Emily", "Jenny", "Kate", "Kevin", "Matt", "Michael", "Ramin", "Taylor"];
+var wdi_24_names = [
+  {
+    name: "Adrianna",
+    picture: 'http://www.pawderosa.com/images/puppies.jpg'
+  },
+  {
+    name: "Andrew",
+    picture: 'https://cdn.fstoppers.com/styles/full/s3/media/2016/05/23/puppy-lick-puppies-licking-8.jpg'
+  },
+  {
+    name: "Christian",
+    picture: 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRbvYI9i0fc4sFqKMArnL5UyWjKCEJRCqiUkSg29TubfVcgcRzP'
+  },
+  {
+    name: "Daniel",
+    picture: 'http://iambored.pro/wp-content/uploads/2016/03/happy-puppies.jpg'
+  },
+  {
+    name: "David",
+    picture: 'https://s-media-cache-ak0.pinimg.com/564x/ab/0e/ce/ab0ece23e44a78bb48df99973c1c4f82.jpg'
+  },
+  {
+    name: "Desi",
+    picture: 'https://s-media-cache-ak0.pinimg.com/564x/00/fa/82/00fa82a552e91b743c3ba0a8e8d147dd.jpg'
+  },
+  {
+    name: "Emily",
+    picture: 'https://s-media-cache-ak0.pinimg.com/564x/af/13/bd/af13bdeac9809ab599734f598accea07.jpg',
+  },
+  {
+    name: 'Jenny',
+    picture: 'https://www.dogspuppiesforsale.com/uploads/source/Category%20update/Pomeranian/fb92cb95d9a0be75e285ef4e78d5a8ce.jpg'
+  },
+  {
+    name: 'Kevin',
+    picture: 'https://s-media-cache-ak0.pinimg.com/564x/dd/a4/3b/dda43bf31a3e21896a423f19fbebdf70.jpg'
+  },
+  {
+    name: 'Matt',
+    picture: 'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSaOVBOoBqUY1_Ll4szHBYv1mOqq7qzWKp-YgFJs4CcPglDNh36'
+  },
+  {
+    name: 'Michael',
+    picture: 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRwavi8w6alPfEylWsmglF-IDZo_kiCXfkFMWuTdJRpeQ1i5-0Hqg'
+  },
+  {
+    name: 'Taylor',
+    picture: 'https://puppydogweb.com/wp-content/uploads/2015/05/St._Bernard_puppy.jpg'
+  }
+];
 
 var called = [];
-var randomName = function() {
-  // generate random number between 0 and 13
+
+function randomName() {
+  // generate random number between 0 and the number of people in the class - 1
   var number = Math.floor(Math.random() * wdi_24_names.length);
   // find the name at that random index
-  var name = wdi_24_names[number];
-  // check how many names have been called
-  if (called.length === wdi_24_names.length) {
+  var person = wdi_24_names[number];
+
+  $('#displayName').html(person.name);
+  $('#question').attr('hidden', true);
+  $('#headshot').attr('hidden', false);
+  $('#headshot').attr('src', person.picture);
+  console.log(person.name);
+
+  // add the name to the called array and splice it from the orginal array
+  called.push(person);
+  wdi_24_names.splice(wdi_24_names.indexOf(person), 1);
+
+  // reset 'called' and 'names' arrays if everyone has been called
+  if (wdi_24_names.length === 0) {
+    wdi_24_names = called;
     called = [];
   }
-  // check whether the name has been called,
-  // if it has not, add it to the called array
-  if (called.indexOf(name) === -1) {
-    called.push(name);
-    // show the name in the console
-    console.log(name);
-  }
-  // if the name has been called, pick another random name
-  else {
-    randomName();
-  }
-  // document.getElementById('displayName').textContent = wdi_24_names[number];
+
 }

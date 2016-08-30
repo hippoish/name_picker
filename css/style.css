@@ -1,0 +1,21 @@
+body {
+  text-align: center;
+  background-image: url('../images/background2.jpg');
+  background-size: cover;
+}
+
+h1 {
+  font-size: 4em;
+  color: white;
+}
+
+button {
+  font-size: 36px;
+}
+
+img {
+  width: 400px;
+  height: 400px;
+  border: solid paleVioletRed 5px;
+  border-radius: 100px;
+}
